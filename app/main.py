@@ -1,10 +1,14 @@
 from flask import Flask
+from flask_cors import CORS
 from qiskit import *
 from qiskit import Aer
 import numpy as np
 
 app = Flask(__name__)
-@app.route('/')
+
+CORS(app)
+
+@app.route('/', methods={"GET", "POST"})
 def index():
     
   q = [{"idx":0, "gates": [{"name":"CX", "param": 1}]}, {"idx":1, "gates": [{"name":"H", "param":""}]}]
