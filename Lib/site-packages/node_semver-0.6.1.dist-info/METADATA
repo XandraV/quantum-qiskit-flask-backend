@@ -1,0 +1,87 @@
+Metadata-Version: 2.1
+Name: node-semver
+Version: 0.6.1
+Summary: port of node-semver
+Home-page: https://github.com/podhmo/python-semver
+Author: podhmo
+Author-email: ababjam61+github@gmail.com
+License: mit
+Keywords: version semver
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Provides-Extra: testing
+Provides-Extra: docs
+Provides-Extra: docs
+Provides-Extra: testing
+Requires-Dist: pytest; extra == 'testing'
+
+semver
+=================
+
+.. image:: https://travis-ci.org/podhmo/python-semver.svg?branch=master
+    :target: https://travis-ci.org/podhmo/python-semver
+
+python version of [node-semver](https://github.com/isaacs/node-semver)
+
+install
+----------------------------------------
+
+.. code-block:: console
+
+   pip install node-semver
+
+examples
+----------------------------------------
+
+.. code-block:: python
+
+   # -*- coding:utf-8 -*-
+   from semver import max_satisfying
+
+   versions = ['1.2.3', '1.2.4', '1.2.5', '1.2.6', '2.0.1']
+   range_ = '~1.2.3'
+   assert max_satisfying(versions, range_, loose=False) == '1.2.6'
+
+
+   versions = ['1.1.0', '1.2.0', '1.2.1', '1.3.0', '2.0.0b1', '2.0.0b2', '2.0.0b3', '2.0.0', '2.1.0']
+   range_ = '~2.0.0'
+   assert max_satisfying(versions, range_, loose=True) == '2.0.0'
+
+   try:
+       (max_satisfying(versions, range_, loose=False) == '2.0.0')
+   except ValueError as e:
+       assert e.args[0] == "Invalid Version: 2.0.0b1"
+
+   versions = ['1.2.3', '1.2.4', '1.2.5', '1.2.6-pre.1', '2.0.1']
+   range_ = '~1.2.3'
+   assert max_satisfying(versions, range_, loose=False, include_prerelease=True) == '1.2.6-pre.1'
+   assert max_satisfying(versions, range_, loose=False, include_prerelease=False) == '1.2.5'
+
+0.6.0
+
+- more strict error handling (InvalidTypeIncluded is added)
+
+0.5.1
+
+- bug fix
+
+0.5.0
+
+- include_prerelease option is added
+
+0.4.2
+
+- fix bug for support 4-digit (handling prelease and build)
+
+0.4.0
+
+- suport 4-digit version (e.g. x.y.z.a)
+
+0.3.0
+
+- drop python2.x support
+- bug fix, Add sort key function #14
+
+
