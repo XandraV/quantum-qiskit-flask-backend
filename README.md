@@ -1,98 +1,37 @@
-# Qiskit Aer
+# Quantum Circuit Simulator - Backend code
 
-[![License](https://img.shields.io/github/license/Qiskit/qiskit-aer.svg?style=popout-square)](https://opensource.org/licenses/Apache-2.0)[![Build Status](https://img.shields.io/travis/com/Qiskit/qiskit-aer/master.svg?style=popout-square)](https://travis-ci.com/Qiskit/qiskit-aer)[![](https://img.shields.io/github/release/Qiskit/qiskit-aer.svg?style=popout-square)](https://github.com/Qiskit/qiskit-aer/releases)[![](https://img.shields.io/pypi/dm/qiskit-aer.svg?style=popout-square)](https://pypi.org/project/qiskit-aer/)
+![python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![qiskit](https://img.shields.io/badge/-Qiskit-3776AB?style=flat-square&logo=python&logoColor=white)
+![flask](https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=Flask&logoColor=white)
 
-**Qiskit** is an open-source framework for working with noisy quantum computers at the level of pulses, circuits, and algorithms.
+This is the backend code for a web application that allows the user to graphically build quantum circuits and view the results on a dashboard. This project combines **React(TypeScript)** frontend with a **Flask(Python)** backend using **Qiskit** library to perform quantum operations.
 
-Qiskit is made up of elements that each work together to enable quantum computing. This element is **Aer**, which provides high-performance quantum computing simulators with realistic noise models.
+This project is automated with continuous deployment on [Heroku](https://www.heroku.com/).
+
+You can visit the deployed, fully functional app [here](https://master.d3vhvy7iyx12n.amplifyapp.com/).
+
+![quantum](https://general-gif-bucket.s3.eu-west-2.amazonaws.com/quantum.gif)
+
+Frontend source code can be found [here](https://github.com/XandraV/quantum-circuit-simulator) and is automated with continuous deployment on [AWS Amplify](https://aws.amazon.com/amplify/).
 
 ## Installation
 
-We encourage installing Qiskit via the PIP tool (a python package manager), which installs all Qiskit elements, including this one.
+Clone the master branch and then run the following scripts in the project directory:
+You will need to have the latest version of [Python 3](https://www.python.org/downloads/), [Flask](https://flask.palletsprojects.com/en/1.1.x/installation/) installed on your machine.
+To install Qiskit follow the guide [here](https://qiskit.org/documentation/install.html).
 
-```bash
-pip install qiskit
-```
+You can install the relevant dependencies by running the following scripts:
+- `pip install Flask` - to install Flask
 
-PIP will handle all dependencies automatically for us and you will always install the latest (and well-tested) version.
+- `pip install flask-cors` - to install a Flask extension for handling Cross Origin Resource Sharing
 
-To install from source, follow the instructions in the [contribution guidelines](https://github.com/Qiskit/qiskit-aer/blob/master/CONTRIBUTING.md).
+- `python ./main/app.py` - to start the flask server from app/backend folder
 
-## Installing GPU support
 
-In order to install and run the GPU supported simulators, you need CUDA&reg; 10.1 or newer previously installed.
-CUDA&reg; itself would require a set of specific GPU drivers. Please follow CUDA&reg; installation procedure in the NVIDIA&reg; [web](https://www.nvidia.com/drivers).
+## Resources
 
-If you want to install our GPU supported simulators, you have to install this other package:
-
-```bash
-pip install qiskit-aer-gpu
-```
-
-This will overwrite your current `qiskit-aer` package installation giving you
-the same functionality found in the canonical `qiskit-aer` package, plus the
-ability to run the GPU supported simulators: statevector, density matrix, and unitary.
-
-## Simulating your first quantum program with Qiskit Aer
-Now that you have Qiskit Aer installed, you can start simulating quantum circuits with noise. Here is a basic example:
-
-```
-$ python
-```
-
-```python
-import qiskit
-from qiskit import IBMQ
-from qiskit.providers.aer import QasmSimulator
-
-# Generate 3-qubit GHZ state
-circ = qiskit.QuantumCircuit(3, 3)
-circ.h(0)
-circ.cx(0, 1)
-circ.cx(1, 2)
-circ.measure([0, 1, 2], [0, 1 ,2])
-
-# Construct an ideal simulator
-sim = QasmSimulator()
-
-# Perform an ideal simulation
-result_ideal = qiskit.execute(circ, sim).result()
-counts_ideal = result_ideal.get_counts(0)
-print('Counts(ideal):', counts_ideal)
-# Counts(ideal): {'000': 493, '111': 531}
-
-# Construct a noisy simulator backend from an IBMQ backend
-# This simulator backend will be automatically configured
-# using the device configuration and noise model 
-provider = IBMQ.load_account()
-vigo_backend = provider.get_backend('ibmq_vigo')
-vigo_sim = QasmSimulator.from_backend(vigo_backend)
-
-# Perform noisy simulation
-result_noise = qiskit.execute(circ, vigo_sim).result()
-counts_noise = result_noise.get_counts(0)
-
-print('Counts(noise):', counts_noise)
-# Counts(noise): {'000': 492, '001': 6, '010': 8, '011': 14, '100': 3, '101': 14, '110': 18, '111': 469}
-```
-
-## Contribution Guidelines
-
-If you'd like to contribute to Qiskit, please take a look at our
-[contribution guidelines](https://github.com/Qiskit/qiskit-aer/blob/master/CONTRIBUTING.md). This project adheres to Qiskit's [code of conduct](https://github.com/Qiskit/qiskit-aer/blob/master/CODE_OF_CONDUCT.md). By participating, you are expect to uphold to this code.
-
-We use [GitHub issues](https://github.com/Qiskit/qiskit-aer/issues) for tracking requests and bugs. Please use our [slack](https://qiskit.slack.com) for discussion and simple questions. To join our Slack community use the [link](https://qiskit.slack.com/join/shared_invite/zt-fybmq791-hYRopcSH6YetxycNPXgv~A#/). For questions that are more suited for a forum we use the Qiskit tag in the [Stack Exchange](https://quantumcomputing.stackexchange.com/questions/tagged/qiskit).
-
-## Next Steps
-
-Now you're set up and ready to check out some of the other examples from our
-[Qiskit IQX Tutorials](https://github.com/Qiskit/qiskit-iqx-tutorials/tree/master/qiskit/advanced/aer) or [Qiskit Community Tutorials](https://github.com/Qiskit/qiskit-community-tutorials/tree/master/aer) repositories.
-
-## Authors and Citation
-
-Qiskit Aer is the work of [many people](https://github.com/Qiskit/qiskit-aer/graphs/contributors) who contribute
-to the project at different levels. If you use Qiskit, please cite as per the included [BibTeX file](https://github.com/Qiskit/qiskit/blob/master/Qiskit.bib).
-
-## License
-
-[Apache License 2.0](LICENSE.txt)
+| Description                                                        | Link                                                                      |
+| :----------------------------------------------------------------- | :------------------------------------------------------------------------ |
+| Qiskit - SDK for working with quantum computers| [Qiskit](https://qiskit.org) |
+| Flask           | [Flask](https://flask.palletsprojects.com/en/1.1.x/installation/)|
+|Heroku |  [Heroku](https://www.heroku.com/)
