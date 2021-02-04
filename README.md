@@ -23,7 +23,7 @@ Clone the master branch and then run the following scripts in the project direct
 
 - `pip install flask-cors` - to install a Flask extension for handling Cross Origin Resource Sharing
 
-- `python ./main/app.py` - to start the flask server
+- `python ./main/app.py` - to start the Flask server
 
 
 ## Resources
