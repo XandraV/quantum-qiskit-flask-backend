@@ -16,11 +16,9 @@ Frontend source code can be found [here](https://github.com/XandraV/quantum-circ
 
 ## Installation
 
-Clone the master branch and then run the following scripts in the project directory:
-You will need to have the latest version of [Python 3](https://www.python.org/downloads/), [Flask](https://flask.palletsprojects.com/en/1.1.x/installation/) installed on your machine.
-To install Qiskit follow the guide [here](https://qiskit.org/documentation/install.html).
+You will need to have the latest version of [Python 3](https://www.python.org/downloads/), [Flask](https://flask.palletsprojects.com/en/1.1.x/installation/) installed on your machine. To install Qiskit follow the guide [here](https://qiskit.org/documentation/install.html).
 
-You can install the relevant dependencies by running the following scripts:
+Clone the master branch and then run the following scripts in the project directory to install the relevant dependencies:
 - `pip install Flask` - to install Flask
 
 - `pip install flask-cors` - to install a Flask extension for handling Cross Origin Resource Sharing
