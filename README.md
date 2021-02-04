@@ -4,15 +4,13 @@
 ![qiskit](https://img.shields.io/badge/-Qiskit-3776AB?style=flat-square&logo=python&logoColor=white)
 ![flask](https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=Flask&logoColor=white)
 
-This is the backend code for a web application that allows the user to graphically build quantum circuits and view the results on a dashboard. This project combines **React(TypeScript)** frontend with a **Flask(Python)** backend using **Qiskit** library to perform quantum operations.
-
-This project is automated with continuous deployment on [Heroku](https://www.heroku.com/).
+This is the backend code for a web application that allows the user to graphically build quantum circuits and view the results on a dashboard. This project combines **React(TypeScript)** frontend with a **Flask(Python)** backend using **Qiskit** library to perform quantum operations. This project is automated with continuous deployment on [Heroku](https://www.heroku.com/).
 
 You can visit the deployed, fully functional app [here](https://master.d3vhvy7iyx12n.amplifyapp.com/).
 
 ![quantum](https://general-gif-bucket.s3.eu-west-2.amazonaws.com/quantum.gif)
 
-Frontend source code can be found [here](https://github.com/XandraV/quantum-circuit-simulator) and is automated with continuous deployment on [AWS Amplify](https://aws.amazon.com/amplify/).
+Frontend source code can be found [here](https://github.com/XandraV/quantum-circuit-simulator) :octocat: and is automated with continuous deployment on [AWS Amplify](https://aws.amazon.com/amplify/).
 
 ## Installation
 
